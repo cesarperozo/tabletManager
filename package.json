@@ -33,5 +33,9 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  }
+  },
+  "main": "index.js",
+  "repository": "git@github.com:cesarperozo/tabletManager.git",
+  "author": "Cesar Perozo <cesar.perozo@phinxlab.com>",
+  "license": "MIT"
 }
