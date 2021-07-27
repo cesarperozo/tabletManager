@@ -1,17 +1,14 @@
-import React, { useEffect, createRef } from "react"
+import React, { useEffect, createRef, useCallback } from "react"
 import { connect } from "react-redux";
 
 const Jugadores = ({ jugadores, agregarTitular, agregarSuplente }) => {
 
     const gridJugadores = createRef()
 
-    useEffect(() => {
-        setScrollContainer()
-        document.addEventListener('click', setScrollContainer)
-    }, [])
+   
 
     // Función que fija el tamaño del grid de los jugadores
-    const setScrollContainer = (desktop = true) => {
+    const setScrollContainer = useCallback((desktop = true) => {
         let container = gridJugadores.current
         if (container) {
             const generatedGrid = () => {
@@ -33,11 +30,16 @@ const Jugadores = ({ jugadores, agregarTitular, agregarSuplente }) => {
             let styles = !desktop && window.matchMedia("(min-width: 1024px)").matches ? `display: grid; grid-row-gap: 1rem;` : generatedGrid()
             container.setAttribute('style', styles)
         }
-    }
+    })
+
+     useEffect(() => {
+        setScrollContainer()
+        document.addEventListener('click', setScrollContainer)
+    }, [setScrollContainer])
 
     return (
         <section>
-            <h2>Jugadores</h2>
+            <h2>Estudiantes</h2>
             <div className="contenedor-jugadores">
                 <div ref={gridJugadores} onClick={() => setScrollContainer.bind(this)}>
                     {
